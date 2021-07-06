@@ -17,6 +17,7 @@ public class HelloWorld {
   @GetMapping
   public String helloWorld() {
     String requestKey = UUID.randomUUID().toString();
+    System.out.println("Request Key: " + requestKey);
     MDC.put("request_id", requestKey);
     MDC.put("author_name","Tran Anh Tran");
     logger.debug("Debug Message Logged !!!");
