@@ -1,8 +1,6 @@
 package com.example.log4j2.controller.rest;
-
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.slf4j.MDC;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,16 +12,17 @@ import java.util.UUID;
 @RestController
 public class HelloWorld {
 
-  private static final Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+  private static final Logger logger = LogManager.getLogger(HelloWorld.class);
 
   @GetMapping
   public String helloWorld() {
     String requestKey = UUID.randomUUID().toString();
+    MDC.put("request_key",requestKey);
     System.out.println("Request Key: " + requestKey);
-    MDC.put("request_id", requestKey);
-    MDC.put("author_name","Tran Anh Tran");
-    logger.debug("Debug Message Logged !!!");
-    logger.info("Info Message Logged !!!");
+    logger.debug("This is a debug message");
+    logger.info("This is an info message");
+    logger.warn("This is a warn message");
+    logger.error("This is an error message");
     return "hello world";
   }
 }
