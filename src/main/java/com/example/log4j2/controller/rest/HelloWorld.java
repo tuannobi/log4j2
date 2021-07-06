@@ -18,6 +18,7 @@ public class HelloWorld {
   public String helloWorld() {
     String requestKey = UUID.randomUUID().toString();
     MDC.put("request_id", requestKey);
+    MDC.put("author_name","Tran Anh Tran");
     logger.debug("Debug Message Logged !!!");
     logger.info("Info Message Logged !!!");
     return "hello world";
